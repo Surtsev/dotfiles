@@ -61,6 +61,17 @@
   #  package = pkgs.ollama;
   #};
 
+  services.open-webui = {
+    enable = true;
+    # Open WebUI автоматически подключится к локальному Ollama
+    # Дополнительные настройки окружения (опционально)
+    environment = {
+      ANONYMIZED_TELEMETRY = "False"; # Отключить телеметрию
+      DO_NOT_TRACK = "True";
+    };
+  };
+
+
 
   qt = {
     enable = true;
@@ -99,18 +110,25 @@
     isNormalUser = true;
     description = "Tom Surtsev";
     extraGroups = [ "networkmanager" "wheel" "docker" "podman" "video" "audio" "render"];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
       thunderbird
     ];
   };
-  users.users.root.shell = pkgs.fish;
+  users.users.root.shell = pkgs.zsh;
 
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.fish.enable = true;
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell"; # или "robbyrussell", "agnoster", "agnosterzak", и т.п.
+      plugins = [ "git" ];
+    };
+  };
   programs.nix-ld.enable = true;
   programs.amnezia-vpn.enable = true;
   programs.steam = {
@@ -135,21 +153,31 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim neovim-qt 
-    wget curl git fish w3m tldr
+    neovim	kitty	ghostty
+    wget curl git zsh w3m tldr
     home-manager
-    podman docker compose2nix winboat freerdp
+    podman docker compose2nix freerdp 
     w3m
-    zip unzip
+    zip unzip	rar
     wl-clipboard
     linuxPackages_6_12.kernel.dev
 
+    klassy
+
+    open-webui
+
     gcc clang lld llvm clang-tools
-    gnumake cmake pkg-config binutils binutils-unwrapped bear
+    gnumake cmake pkg-config binutils binutils-unwrapped bear ninja extra-cmake-modules
     bc flex bison openssl pahole elfutils cpio dwarfdump libelf
     perl python3 gnum4 gengetopt xmlto kmod docbook_xsl docbook_xml_dtd_42 docbook_xml_dtd_44
     strace gdb ltrace valgrind
     rustc cargo 
+
+    kdePackages.qtwebsockets
+    kdePackages.qtdeclarative
+    kdePackages.qtsvg
+    plasma-panel-colorizer
+
   ];
   fonts = {
     packages = with pkgs; [
@@ -198,7 +226,6 @@
     };
     wantedBy = [ "multi-user.target" ];
   };
-
 
   # Локальные домены
   networking = {

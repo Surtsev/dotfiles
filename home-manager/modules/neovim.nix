@@ -175,6 +175,12 @@ let g:airline_powerline_fonts = 0
 
     extraLuaConfig = ''
 
+			vim.opt.expandtab = true   -- Convert tabs to spaces
+      vim.opt.tabstop = 4       -- A tab character looks like 4 spaces
+      vim.opt.shiftwidth = 4    -- Size of an indent
+      vim.opt.softtabstop = 4   -- Number of spaces inserted when pressing Tab
+
+      
       -- Добавляем пути к плагинам из home-manager в runtimepath
       local plugin_paths = {
         vim.fn.expand("~/.local/share/nvim/site/pack/home-manager/start"),
