@@ -101,12 +101,12 @@ alias gaf='git add $(git status --porcelain | fzf | cut -c 4-)'
 # ============================================
 
 # Приветствие (аналог fish_greeting)
-function greet_fastfetch() {
-  if command -v fastfetch >/dev/null 2>&1; then
-    fastfetch
-  fi
-}
-greet_fastfetch
+#function greet_fastfetch() {
+#  if command -v fastfetch >/dev/null 2>&1; then
+#    fastfetch
+#  fi
+#}
+#greet_fastfetch
 
 # mkcd - создать директорию и перейти в нее
 function mkcd() {
