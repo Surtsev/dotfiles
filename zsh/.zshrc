@@ -51,11 +51,11 @@ fi
 # ============================================
 # Алиасы (shellAliases из Nix)
 # ============================================
-alias l="eza --icons"
-alias la="eza -a --icons"
-alias lla="eza -lah --icons"
-alias lt="eza --tree --icons"
-alias llt="eza --tree -lah --icons"
+alias l="eza "
+alias la="eza -a "
+alias lla="eza -lah "
+alias lt="eza --tree "
+alias llt="eza --tree -lah "
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
@@ -63,12 +63,22 @@ alias gp="git push"
 alias gl="git log --oneline"
 alias gd="git diff"
 
+clip() {
+    cat "$@" | powershell.exe -NoProfile -Command "$input | Set-Clipboard"
+}
+
 # Дополнительные алиасы (из initContent)
-alias ls="eza --icons"
-alias ll="eza -lah --icons"
+alias ls="eza "
+alias ll="eza -lah "
 alias cat="bat"
 alias cd="z"
 alias vim="nvim"
+
+# ============================================
+# Алиасы для VPN
+# ============================================
+alias vpnoff="sudo ip route del default dev eth1 2>/dev/null"
+alias vpnon="sudo ip route add default dev eth1 metric 5 2>/dev/null"
 
 # ============================================
 # fzf алиасы
@@ -176,3 +186,6 @@ if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
   echo "Installing zsh-syntax-highlighting..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting"
 fi
+
+# opencode
+export PATH=/home/surtsev/.opencode/bin:$PATH
