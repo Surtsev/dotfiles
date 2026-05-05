@@ -51,11 +51,11 @@ fi
 # ============================================
 # Алиасы (shellAliases из Nix)
 # ============================================
-alias l="eza "
-alias la="eza -a "
-alias lla="eza -lah "
-alias lt="eza --tree "
-alias llt="eza --tree -lah "
+alias l="eza --icons"
+alias la="eza -a --icons"
+alias lla="eza -lah --icons"
+alias lt="eza --tree --icons"
+alias llt="eza --tree -lah --icons"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
@@ -68,17 +68,11 @@ clip() {
 }
 
 # Дополнительные алиасы (из initContent)
-alias ls="eza "
-alias ll="eza -lah "
+alias ls="eza --icons"
+alias ll="eza -lah --icons"
 alias cat="bat"
 alias cd="z"
 alias vim="nvim"
-
-# ============================================
-# Алиасы для VPN
-# ============================================
-alias vpnoff="sudo ip route del default dev eth1 2>/dev/null"
-alias vpnon="sudo ip route add default dev eth1 metric 5 2>/dev/null"
 
 # ============================================
 # fzf алиасы

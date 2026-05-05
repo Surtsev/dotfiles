@@ -1,0 +1,32 @@
+# 1. Настройки окна: прозрачность и расположение
+[window]
+opacity = 0.8    # 80% прозрачности[reference:1]
+padding = { x = 0, y = 0 } # Отступы от краёв окна для комфорта
+
+# 2. Настройки шрифта
+[font]
+size = 14.0      # Размер шрифта 16[reference:2]
+
+[font.normal]
+family = "VictorMono Nerd Font" # Название скачанного шрифта
+style = "Regular"
+
+[font.bold]
+family = "VictorMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "VictorMono Nerd Font"
+style = "Italic"
+
+# 3. Настройки оболочки (Shell)
+# Запускаем Zsh как оболочку по умолчанию[reference:3]
+[terminal.shell]
+program = "/bin/zsh"
+
+# 4. Цветовая схема: прозрачный фон и розовый курсор
+[colors]
+# Настройка курсора: текст будет цвета фона терминала, а сам курсор — розовым
+[colors.cursor]
+text = "#000000"   # Цвет текста под курсором
+cursor = "#ff69b4" # Розовый цвет (HEX-код Hot Pink). Можно любой: #ffc0cb (розовый) или #ff85b3[reference:4]
