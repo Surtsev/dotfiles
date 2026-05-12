@@ -63,9 +63,6 @@ alias gp="git push"
 alias gl="git log --oneline"
 alias gd="git diff"
 
-clip() {
-    cat "$@" | powershell.exe -NoProfile -Command "$input | Set-Clipboard"
-}
 
 # Дополнительные алиасы (из initContent)
 alias ls="eza --icons"
@@ -100,17 +97,38 @@ alias gcof='git checkout $(git branch | fzf)'
 # Git: выбор файла для добавления
 alias gaf='git add $(git status --porcelain | fzf | cut -c 4-)'
 
+# --- Алиасы для управления SSH-туннелем (прокси) ---
+# Функция для проверки, запущен ли туннель
+proxy-status() {
+    if pgrep -f "ssh.*-D 1080" > /dev/null; then
+        echo "✅ SSH-туннель (прокси) ЗАПУЩЕН"
+    else
+        echo "❌ SSH-туннель (прокси) ОСТАНОВЛЕН"
+    fi
+}
+
+# Включить прокси
+alias proxyon='ssh -D 1080 -f -N root@5.178.109.136'
+
+# Выключить прокси
+alias proxyoff='sudo pkill -f "ssh.*-D 1080"'
+
+# Показать статус прокси
+alias proxystatus='proxy-status'
+# --- Конец секции прокси ---
+
+
 # ============================================
 # Функции
 # ============================================
 
 # Приветствие (аналог fish_greeting)
-#function greet_fastfetch() {
-#  if command -v fastfetch >/dev/null 2>&1; then
-#    fastfetch
-#  fi
-#}
-#greet_fastfetch
+function greet_fastfetch() {
+  if command -v fastfetch >/dev/null 2>&1; then
+    fastfetch
+  fi
+}
+greet_fastfetch
 
 # mkcd - создать директорию и перейти в нее
 function mkcd() {
