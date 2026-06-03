@@ -1,0 +1,32 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["dwl/tags"],
+    "modules-center": ["clock"],
+    "modules-right": ["wireplumber", "battery"],
+
+    "dwl/tags": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    
+    "clock": {
+        "format": "{:%H:%M}",
+        "interval": 60
+    },
+    
+    "battery": {
+        "bat": "BAT0",
+        "format": "{capacity}%",
+        "states": {
+            "warning": 20,
+            "critical": 10
+        }
+    },
+    
+    "wireplumber": {
+        "format": "{volume}%"
+    }
+}

@@ -41,8 +41,14 @@ fi
 # ============================================
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/go/bin:$HOME/dotfiles/bin:$HOME/.local/bin"
+export XCURSOR_THEME="MacOS-TahoeX-Cursor"
+export XCURSOR_SIZE="24"
 
 eval "$(zoxide init zsh)"
+
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval `dbus-launch --sh-syntax --exit-with-session`
+fi
 
 if command -v direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
@@ -96,6 +102,9 @@ alias gcof='git checkout $(git branch | fzf)'
 
 # Git: выбор файла для добавления
 alias gaf='git add $(git status --porcelain | fzf | cut -c 4-)'
+
+
+alias vpn="QT_QPA_PLATFORM=xcb /usr/local/sbin/AmneziaVPN"
 
 # --- Алиасы для управления SSH-туннелем (прокси) ---
 # Функция для проверки, запущен ли туннель
@@ -201,3 +210,4 @@ fi
 
 # opencode
 export PATH=/home/surtsev/.opencode/bin:$PATH
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/surtsev/.local/share/flatpak/exports/share"

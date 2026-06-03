@@ -6,11 +6,18 @@
 /* appearance */
 static const int sloppyfocus               = 1;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
+static const int smartgaps                 = 0;  /* 1 means no outer gap when there is only one window */
+static int gaps                            = 1;  /* 1 means gaps between windows are added */
+static const unsigned int gappx            = 10; /* gap pixel between windows */
 static const unsigned int borderpx         = 1;  /* border pixel of windows */
 static const float rootcolor[]             = COLOR(0x222222ff);
 static const float bordercolor[]           = COLOR(0x444444ff);
 static const float focuscolor[]            = COLOR(0x005577ff);
 static const float urgentcolor[]           = COLOR(0xff0000ff);
+
+static const char *cursor_theme = "MacOS-TahoeX-Cursor";
+static const char *cursor_size = "24";
+ 
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
 
@@ -123,6 +130,7 @@ static const Key keys[] = {
 	/* modifier                  key                  function          argument */
 	{ MODKEY,                    XKB_KEY_p,           spawn,            {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,      spawn,            {.v = termcmd} },
+	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    XKB_KEY_j,           focusstack,       {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,           focusstack,       {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,           incnmaster,       {.i = +1} },
@@ -130,6 +138,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_h,           setmfact,         {.f = -0.05f} },
 	{ MODKEY,                    XKB_KEY_l,           setmfact,         {.f = +0.05f} },
 	{ MODKEY,                    XKB_KEY_Return,      zoom,             {0} },
+  { MODKEY,                    XKB_KEY_g,           togglegaps,       {0} },
 	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_c,           killclient,       {0} },
 	{ MODKEY,                    XKB_KEY_t,           setlayout,        {.v = &layouts[0]} },
